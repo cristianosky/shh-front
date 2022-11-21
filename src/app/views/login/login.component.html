@@ -1,0 +1,29 @@
+<div class="h-full w-full p-9 bg-cover bg-center bg-no-repeat bg-scroll" style="background-image: url('../../../assets/img/fondo-login.jpg');">
+  <div class="grid grid-cols-12 h-full ">
+    <div class="md:col-span-4 col-span-12 bg-purple-100 py-6 text-center rounded-r-[15px]">
+      <span class="text-2xl font-bold text-purple-500 py-6">Bienvenido</span>
+      <div class="grid content-center">
+        <img src="../../../assets/img/vayne.jpg" class="rounded-full mx-auto my-6" alt="">
+      </div>
+      <div class="w-full justify-center">
+        <div class="p-4">
+          <form [formGroup]="formLogin">
+            <mat-form-field appearance="outline" color="red" class="w-full">
+              <mat-label>Usuario</mat-label>
+              <input matInput type="email" formControlName="usuario" placeholder="Usuario">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" color="red" class="w-full bg-d">
+              <mat-label>Contraseña</mat-label>
+              <input matInput type="password" formControlName="password" placeholder="Contraseña">
+            </mat-form-field>
+          </form>
+          <br>
+          <button mat-raised-button class="w-full bg-purple-500 text-white pt-6" [disabled]="loadding || formLogin.invalid" (click)="ingresar()">
+            {{ loadding ? 'Ingresando...' : 'Ingresar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
