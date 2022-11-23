@@ -16,8 +16,8 @@ export class DashboardComponent implements OnInit {
   listadoUser: ListadoUser[] = [];
   viewListado: boolean = false;
   listadoUserHack: listadoUserHack[] = [];
-  displayedColumns: string[] = ['id', 'nombre', 'usuario', 'acciones'];
-  columns: string[] = ['no', 'nombre', 'usuario', 'password','acciones'];
+  displayedColumns: string[] = ['nombre', 'usuario', 'acciones'];
+  columns: string[] = ['nombre', 'usuario', 'password','acciones'];
   constructor(private dialog: MatDialog, private router: Router, private _AuthService: AuthService) { }
 
   ngOnInit(): void {
@@ -43,9 +43,16 @@ export class DashboardComponent implements OnInit {
   }
 
   loadUser() {
-    this._AuthService.loadUser().subscribe((resp: any) => {
-      this.listadoUser = resp.data;
-    });
+    if(this.viewListado){
+      this.viewListado = false
+    }else{
+      this._AuthService.loadUser().subscribe((resp: any) => {
+        this.listadoUser = resp.data;
+        this.viewListado = true;
+  
+      });
+    }
+
   }
 
   deleteList(cod: number){
